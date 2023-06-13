@@ -1,0 +1,27 @@
+#include <DHT.h>
+
+#define DHTTYPE DHT11
+#include<LiquidCrystal.h>
+int dhtSensorPin = 9;
+DHT dht(dhtSensorPin,DHTTYPE);
+
+void setup()
+{
+  Serial.begin(9600);
+  dht.begin();
+  pinMode(dhtSensorPin,INPUT);
+  delay(2000);
+}
+
+void loop(){
+ float t, h;
+  
+  t= dht.readTemperature();
+  Serial.print("Temperature = ");
+  Serial.println(t);
+  
+  h= dht.readHumidity();
+  Serial.print("Humidity = ");
+  Serial.println(h);
+  delay(1000);
+}

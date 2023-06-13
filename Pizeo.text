@@ -1,0 +1,31 @@
+
+/* Interfacing Piezo element with Arduino board  */
+
+int PiezoElementPin = A4;
+int PiezoElementValue;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(PiezoElementPin, INPUT); 
+  pinMode(2, OUTPUT);   
+}
+
+void loop()
+{
+  PiezoElementValue = analogRead(PiezoElementPin);
+  
+  if(PiezoElementValue > 20)
+  {
+    
+    Serial.println("knock detected");-
+    Serial.print("PiezoElementValue : ");
+  Serial.println(PiezoElementValue);
+    digitalWrite(2, HIGH);
+  }
+  else
+  {
+    digitalWrite(2, LOW);
+  }
+  delay(100);
+}
